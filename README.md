@@ -9,4 +9,6 @@
 | :-----------------------------:  | :--------------------------------    |
 |[Assignment1.sh](Assignment1.sh)|Database shell script for electronic items|
 |[Assignment2a.c](Assignment2a.c)|Zombie and orphan process|
+|[Assignment2b1.c](Assignment2b1.c)|Calling passing the array to child process using execv|
+|[Assignment2b2.c](Assignment2b2.c)|Binary search on the array received by parent process|
 
