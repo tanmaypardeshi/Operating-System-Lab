@@ -35,7 +35,7 @@ int main()
 
 	printf("\n\nEnter the size of array:- ");
 	scanf("%d",&n);
-	
+
 	printf("\nPlease enter the elements in the array:- \n");
 	for(int i=0;i<n;i++)
 	{
@@ -44,20 +44,20 @@ int main()
 	}
 	printf("\nUnsorted array is:- ");
 	print_arr(arr,n);
-	
+
 	printf("\n\nAssignment 2a - Orphan and Zombie process");
 	printf("\n1. Zombie");
 	printf("\n2. Orphan");
 	printf("\n3. Exit program");
 	printf("\n\nEnter your choice:- ");
 	scanf("%d",&choice);
-	
+
+	printf("\nForking the process");
+	newpid = fork();
+
 	switch(choice)
 	{
-		case 1:
-			printf("\nForking the process");
-			newpid = fork();
-
+		case 1:			
 			if(newpid == -1)
 				printf("\nUnfortunately the child was not born");
 			else if(newpid == 0)
@@ -79,26 +79,23 @@ int main()
 				merge_sort(arr,0,n-1);
 				print_arr(arr,n);
 				printf("\n\nParent executed successfully\n");
-				wait(NULL);
+				 system("ps -al | grep a.out");
 				exit(0);
 			}
 			break;
 		case 2:
-			printf("\nForking the process:- ");
-			newpid = fork();
-
 			if(newpid == -1)
 				printf("\nUnfortunately the child was not born");
 			else if(newpid == 0)
 			{
 				printf("\n\nChild process!");
 				printf("\nMy id is %d", getpid());
-				printf("\nMy parent before sleep() is %d", getppid());		
+				printf("\nMy parent before sleep() is %d", getppid());
 				printf("\nSorted Array using quick sort:- ");
 				quick_sort(arr,0,n-1);
 				print_arr(arr,n);
 				sleep(10);
-				printf("\nMy parent after sleep() is %d", getppid());		
+				printf("\nMy parent after sleep() is %d", getppid());	
 				printf("\nChild executed successfully");
 			}
 			else
