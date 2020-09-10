@@ -1,3 +1,12 @@
+/*
+================================================================================
+Assignment 2b Part 1: execv() call
+Name: Tanmay Pardeshi
+Roll number: 33259
+Batch: N 10
+================================================================================
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -7,6 +16,7 @@
 
 
 void print_arr(int [],int);
+void quick_sort(int [],int ,int);
 
 int main()
 {
@@ -31,6 +41,13 @@ int main()
 	printf("\nArray is:- ");
 	print_arr(arr,n);
 	printf("\n");
+	
+	quick_sort(arr, 0, n-1);
+	
+	printf("\nSorted array is:- ");
+	print_arr(arr,n);
+	printf("\n");
+
 
 
 	printf("\nForking the current process");
@@ -79,5 +96,43 @@ void print_arr(int arr[100],int n)
 		printf(" %d, ",arr[i]);
 
 	printf(" %d ]",arr[i]);
+}
+
+void quick_sort(int arr[],int first,int last)
+{
+
+    int i,j,k,pivot,cmp=0,swap=0,temp;
+
+    if(first<last)
+    {
+        pivot=first;
+        i=first;
+        j=last;
+
+        while(i<j)
+        {
+            while(arr[i] <= arr[pivot] && i<last)
+                i++;
+
+            while(arr[j] > arr[pivot])
+                j--;
+
+            cmp++;
+            if(i<j)
+            {
+                swap++;
+                temp=arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+            }
+        }
+
+        temp=arr[pivot];
+        arr[pivot]=arr[j];
+        arr[j]=temp;
+
+        quick_sort(arr,first,j-1);
+        quick_sort(arr,j+1,last);
+    }
 }
 

@@ -1,3 +1,13 @@
+/*
+================================================================================
+Assignment 2b Part 2: Binary Search
+Name: Tanmay Pardeshi
+Roll number: 33259
+Batch: N 10
+================================================================================
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
