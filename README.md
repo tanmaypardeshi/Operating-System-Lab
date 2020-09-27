@@ -11,4 +11,6 @@
 |[Assignment2a.c](Assignment2a.c)|Zombie and orphan process|
 |[Assignment2b1.c](Assignment2b1.c)|Calling passing the array to child process using execv|
 |[Assignment2b2.c](Assignment2b2.c)|Binary search on the array received by parent process|
+|[Assignment3.c](Assignment3.c)|Matrix Multiplication using threading|
+|[Assignment4.c](Assignment4.c)|Producer consumer problem|
 
