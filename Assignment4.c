@@ -14,7 +14,7 @@ sem_t empty;
 sem_t full;
 sem_t mutex;
 
-int buffer[BUFFERSIZE];
+int buffer[BUFFERSIZE], pid, cid;
 
 int main() 
 {
@@ -51,6 +51,9 @@ int main()
     printf("\nFailed to proceed");
     exit(EXIT_FAILURE);
   }
+
+  pid = 0;
+  cid = 0;
 
   printf("\nCreating producer threads");
   for(i=1;i<=nproducer;i++)
@@ -103,20 +106,24 @@ int main()
 void *producer(void *arg) 
 {
   int *num = (int *)arg;
-  int i=0,n;
+  int i;
   while(1) 
   {
-    i++;
     sem_wait(&empty);
     sem_wait(&mutex);
-    printf("\nEntered in producer %d\n", *num);
-    sem_getvalue(&full, &n);
-    buffer[n] = i;
-    printf("Produced: %d\n\n",i);
+    printf("\nEntered in producer %d", *num);
+    buffer[pid] = *num;  
+    printf("\n[ ");
+    for(i=0;i<BUFFERSIZE;i++)
+    {
+        printf(" %d ", buffer[i]);
+    }
+    printf(" ]\n");
     printf("Exited in producer %d\n", *num);
+    pid = (pid + 1)%BUFFERSIZE;
     sem_post(&mutex);
     sem_post(&full);
-    sleep(2);
+    sleep(4);
   }
   pthread_exit(NULL);
 }
@@ -124,18 +131,24 @@ void *producer(void *arg)
 void *consumer(void *arg) 
 {
   int *num = (int *)arg;
-  int n;
+  int i;
   while(1) 
   {
     sem_wait(&full);
     sem_wait(&mutex);
-    printf("\nEntered in consumer %d\n", *num);
-    sem_getvalue(&full, &n);
-    printf("Consumed: %d\n\n",buffer[n]);
+    printf("\nEntered in consumer %d", *num);
+    buffer[cid] = 0;
+    printf("\n[ ");
+    for(i=0;i<BUFFERSIZE;i++)
+    {
+        printf(" %d ", buffer[i]);
+    }
+    printf(" ]\n");
+    cid = (cid + 1)%BUFFERSIZE;
     printf("Exited in consumer %d\n", *num);
     sem_post(&mutex);
     sem_post(&empty);
-    sleep(2);
+    sleep(4);
   }
   pthread_exit(NULL);
 }
