@@ -12,5 +12,8 @@
 |[Assignment2b1.c](Assignment2b1.c)|Calling passing the array to child process using execv|
 |[Assignment2b2.c](Assignment2b2.c)|Binary search on the array received by parent process|
 |[Assignment3.c](Assignment3.c)|Matrix Multiplication using threading|
-|[Assignment4.c](Assignment4.c)|Producer consumer problem|
+|[Assignment4A.c](Assignment4A.c)|Binary semaphore with single thread|
+|[Assignment4B.c](Assignment4B.c)|Binary semaphore with multiple threads|
+|[Assignment4C.c](Assignment4C.c)|Mutex with multiple threads|
+
 
