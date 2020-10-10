@@ -15,5 +15,7 @@
 |[Assignment4A.c](Assignment4A.c)|Binary semaphore with single thread|
 |[Assignment4B.c](Assignment4B.c)|Binary semaphore with multiple threads|
 |[Assignment4C.c](Assignment4C.c)|Mutex with multiple threads|
+|[safe_sequence.c](safe_sequence.c)|Safe sequence algorithm|
+|[bankers.c](bankers.c)|Banker's algorithm|
 
 
