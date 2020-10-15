@@ -16,6 +16,7 @@
 |[Assignment4B.c](Assignment4B.c)|Binary semaphore with multiple threads|
 |[Assignment4C.c](Assignment4C.c)|Mutex with multiple threads|
 |[safe_sequence.c](safe_sequence.c)|Safe sequence algorithm|
-|[bankers.c](bankers.c)|Banker's algorithm|
+|[bankers_w_menu.c](bankers_w_menu.c)|Banker's algorithm with menu driven output|
+|[bankers_wo_menu.c](bankers_wo_menu.c)|Banker's algorithm without menu driven output|
 
 

@@ -62,7 +62,7 @@ int main()
 		return 0;
 	}
 	
-	printf("Enter resource request for process %d\n", request);
+	printf("Enter resource request for process %d \n", request);
 	for(i =0; i< r; i++)
 	{
 		printf("\nEnter request for resource %d:- ", i+1);
@@ -75,7 +75,7 @@ int main()
 		{ 
 			if (req[j] <= available[j])
 			{ 
-                  	available[j] = available[j] - req[j];
+                		available[j] = available[j] - req[j];
 				allocation[request][j] += req[j];
 				need[request][j] = need[request][j] - req[j];
 				flag = 1;
@@ -84,67 +84,68 @@ int main()
 		
 		if(!flag)
 			break;
-        } 
+	} 
 	
-	
-	do
+	if(flag)
 	{
-		printf("\nMax matrix:\tAllocation matrix:\n");
-		for(i = 0; i < p; i++)
+		do
 		{
-			for( j = 0; j < r; j++)
-				printf("%d  ", max[i][j]);
-			printf("\t\t");
-			for( j = 0; j < r; j++)
-				printf("%d  ", allocation[i][j]);
-			printf("\n");
-		}
-
-		process = -1;
-
-		for(i = 0; i < p; i++)
-		{
-			if(completed[i] == 0)//if not completed
+			printf("\nMax matrix:\tAllocation matrix:\n");
+			for(i = 0; i < p; i++)
 			{
-				process = i;
-				for(j = 0; j < r; j++)
+				for( j = 0; j < r; j++)
+					printf("%d  ", max[i][j]);
+				printf("\t\t");
+				for( j = 0; j < r; j++)
+					printf("%d  ", allocation[i][j]);
+				printf("\n");
+			}
+
+			process = -1;
+
+			for(i = 0; i < p; i++)
+			{
+				if(completed[i] == 0)//if not completed
 				{
-					if(available[j] < need[i][j])
+					process = i;
+					for(j = 0; j < r; j++)
 					{
-						process = -1;
-						break;
+						if(available[j] < need[i][j])
+						{
+							process = -1;
+							break;
+						}
 					}
 				}
+				if(process != -1)
+					break;
 			}
 			if(process != -1)
-				break;
-		}
-
-		if(process != -1)
-		{
-			printf("\nProcess %d runs to completion!", process + 1);
-			safeSequence[count] = process + 1;
-			count++;
-			for(j = 0; j < r; j++)
 			{
-				available[j] += allocation[process][j];
-				allocation[process][j] = 0;
-				max[process][j] = 0;
-				completed[process] = 1;
+				printf("\nProcess %d runs to completion!", process + 1);
+				safeSequence[count] = process + 1;
+				count++;
+				for(j = 0; j < r; j++)
+				{
+					available[j] += allocation[process][j];
+					completed[process] = 1;
+				}
 			}
-		}
-	} while(count != p && process != -1);
 
-	if(count == p)
-	{
-		printf("\nThe system is in a safe state!!\n");
-		printf("Safe Sequence : < ");
-		for( i = 0; i < p; i++)
-				printf("%d  ", safeSequence[i]);
-		printf(">\n");
+		} while(count != p && process != -1);
+
+		if(count == p)
+		{
+			printf("\nThe system is in a safe state!!\n");
+			printf("Safe Sequence : < ");
+			for( i = 0; i < p; i++)
+					printf("%d  ", safeSequence[i]);
+			printf(">\n");
+		}
+		else
+			printf("\nThe system is in an unsafe state!!\n");
 	}
-	else
-		printf("\nThe system is in an unsafe state!!\n");
+		
 	return 0;
 }
 	
