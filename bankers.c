@@ -4,7 +4,8 @@
 
 int max[SIZE][SIZE], need[SIZE][SIZE], allocation[SIZE][SIZE];
 int completed[SIZE], safeSequence[SIZE], req[SIZE], available[SIZE];
-int i,j,p,r, process, count, request, flag, choice;
+int i,j,p,r, count, request, flag, choice, process;
+
 
 void safesequence();
 void requestresource();
@@ -66,7 +67,7 @@ int main()
 		switch(choice)
 		{
 			case 1:
-				safesequence();
+				safesequence(p, r, completed, available, safeSequence, max, allocation, need);
 				break;
 			case 2:
 				requestresource();
@@ -123,6 +124,8 @@ void safesequence()
 			for(j = 0; j < r; j++)
 			{
 				available[j] += allocation[process][j];
+				allocation[process][j] = 0;
+				max[process][j] = 0;
 				completed[process] = 1;
 			}
 		}
@@ -134,12 +137,13 @@ void safesequence()
 		printf("\nThe system is in a safe state!!\n");
 		printf("Safe Sequence : < ");
 		for( i = 0; i < p; i++)
-				printf("%d  ", safeSequence[i]);
+			printf("%d  ", safeSequence[i]);
 		printf(">\n");
 	}
 	else
 		printf("\nThe system is in an unsafe state!!\n");
 }
+
 
 void requestresource()
 {
@@ -179,7 +183,3 @@ void requestresource()
 	if(flag)
 		safesequence();
 }
-
-	
-	
-	
