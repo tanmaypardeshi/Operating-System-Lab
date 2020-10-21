@@ -67,7 +67,7 @@ int main()
 		switch(choice)
 		{
 			case 1:
-				safesequence(p, r, completed, available, safeSequence, max, allocation, need);
+				safesequence();
 				break;
 			case 2:
 				requestresource();
