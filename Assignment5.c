@@ -4,29 +4,29 @@
 #include <unistd.h>
 #include <math.h>
 #include <pthread.h>
+#define BUFFERSIZE 10
 
 sem_t rwlock,mutex;
 
 void *reader_thread(void *no);
 void *writer_thread(void *no);
 
-int readcount;
-
-int data;
+int readcount, buffer[BUFFERSIZE], rid, wid;
 
 int main()
 {
 
 	int res,nor,now,i;
 	int *arg;
+	pthread_t reader,writer;
+	
 	printf("\nReader and Writer Problem");
 	printf("\nEnter the number of readers:- ");
 	scanf("%d",&nor);
 	printf("\n Enter the number of writers:- ");
 	scanf("%d",&now);
 
-	pthread_t reader,writer;
-	
+
 	res =  sem_init(&rwlock, 0, 1);
     if (res != 0) 
     {
@@ -44,6 +44,8 @@ int main()
 	}	
 
 	readcount = 0;
+	rid = 0;
+	wid = 0;
 	
 	printf("\nCreating Reading Threads");
 	for(i=1;i<=nor;i++)
@@ -95,10 +97,10 @@ int main()
 void *reader_thread(void *no)
 {
 	int *num = (int*) no;
+	int i;
+		
 	while(1)
     {
-		int i;
-        int temp = rand()%3;
 		
         sleep(2);
 		
@@ -111,10 +113,14 @@ void *reader_thread(void *no)
 
         // Critical section
 		printf("\n\n\nEntered in reader number %d",*num);
-        sleep(2);
-		temp = data;
-        printf("\nData is %d",temp);
-        
+		buffer[rid] = 0;
+		printf("\n[ ");
+		for(i=0;i<BUFFERSIZE;i++)
+		{
+			printf(" %d ", buffer[i]);
+		}
+		printf(" ]\n");
+		rid = (rid + 1)%BUFFERSIZE;
         // Exit code
     	printf("\nExited from reader number %d",*num);
 		sem_wait(&mutex);
@@ -139,8 +145,15 @@ void *writer_thread(void *no)
 
         // Critical section
         printf("\n\n\nEntered in writer number %d",*num);
-        data = temp * 12;
-        printf("\nThe data was changed");		
+        buffer[wid] = *num;
+		printf("\n[ ");
+		for(i=0;i<BUFFERSIZE;i++)
+		{
+			printf(" %d ", buffer[i]);
+		}
+    	printf(" ]\n");
+        wid = (wid + 1)%BUFFERSIZE;
+		printf("\nThe data was changed");		
 
         // Exit code 
         printf("\nExited from writer number %d",*num);
