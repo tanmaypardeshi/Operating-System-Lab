@@ -121,7 +121,8 @@ void *reader_thread(void *no)
 		}
 		printf(" ]\n");
 		rid = (rid + 1)%BUFFERSIZE;
-        // Exit code
+        
+		// Exit code
     	printf("\nExited from reader number %d",*num);
 		sem_wait(&mutex);
         readcount--;
