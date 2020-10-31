@@ -18,5 +18,6 @@
 |[safe_sequence.c](safe_sequence.c)|Safe sequence algorithm|
 |[bankers.c](bankers.c)|Banker's algorithm with menu driven output|
 |[Assignment5.c](Assignment5.c)|Reader writer problem in C|
+|[Assignment6.c](Assignment6.c)|Dining Philosopher's problem in C|
 
 
