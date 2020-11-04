@@ -80,8 +80,8 @@ void think(int i)
 {
     if (state[i] == THINKING)
     {
-        int temp = rand() % 3;
-        temp = (temp == 0 ? 2 : temp);
+        int temp = rand() % 7;
+        temp = (temp == 0 ? 3 : temp);
         printf("\nPhilosopsher %d is thinking \n", i);
         sleep(temp); 
         state[i] = HUNGRY; 
@@ -102,31 +102,30 @@ void putChopstick(int i)
 
 void eat(int i)
 {
-    int temp = rand() % 3;
-    temp = temp == 0 ? 1 : temp;
+    int temp = rand() % 7;
+    temp = temp == 0 ? 3 : temp;
     
     int j;
     if (state[(i + 1) % N] != EATING && state[(i + (N - 1)) % N] != EATING && state[i] == HUNGRY)
     {
         state[i] = EATING;
-        printf("\n\tPhilosopsher %d is EATING", i);
+
+        printf("\nPhilosopsher %d is EATING", i);
         takeChopstick(i);
         sleep(temp);
         eatCount[i]++;
 
-        printf("\n\t\tPhilosopsher %d HAS DONE EATING", i);
+        printf("\nPhilosopsher %d HAS DONE EATING", i);
         putChopstick(i);
         state[i] = THINKING;
 
         pthread_mutex_lock(&lock);
-        printf("\n========================================");
         printf("\n\nEat Count : [");
         for (j = 0; j < N; j++)
         {
             printf(" %d", eatCount[j]);
         }
         printf("]");
-        printf("\n========================================\n");
         pthread_mutex_unlock(&lock);
     }
 }
