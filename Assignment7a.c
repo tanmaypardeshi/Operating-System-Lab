@@ -9,6 +9,7 @@ int main(void)
 
 	char filename[BUFFER_SIZE], buffer[BUFFER_SIZE];
 	int pipe1[2],pipe2[2],pid,i;
+	int no_spaces, no_tabs, no_lines, no_words;
 	
 	FILE * file; 
 
@@ -45,8 +46,36 @@ int main(void)
 		close(pipe2[1]);
 		read(pipe2[0], buffer, BUFFER_SIZE);
 		close(pipe2[0]);
+		i = 0;
+		while(1)
+		{
+			if(buffer[i] == '\0')
+			{
+				break;
+			}
+			if(buffer[i] == ' ')
+			{
+				no_spaces++;
+			}
+			if(buffer[i] == '\t')
+			{
+				no_tabs++;
+			}
+			if(buffer[i] == '\n')
+			{
+				no_lines++;
+			}
+			if(buffer[i] == ' ' || buffer[i] == '\n')
+			{
+				no_words++;
+			}
+			i++;
+		}	
 		printf("\nParent process has read the contents from pipe 2:- %s\n", buffer);
-
+		printf("\nNo of spaces are %d", no_spaces);	
+		printf("\nNo of tabs are %d", no_tabs);
+		printf("\nNo of lines are %d", no_lines);
+		printf("\nNo of words are %d\n", no_words);
 		wait(NULL);
 	}	
 	else // child process
