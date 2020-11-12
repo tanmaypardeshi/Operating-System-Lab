@@ -104,7 +104,6 @@ int main(void)
 		close(pipe2[1]);
 
 		printf("\nChild has written content on pipe 2\n");
-		wait(NULL);
 	}
 
 	return 0;
