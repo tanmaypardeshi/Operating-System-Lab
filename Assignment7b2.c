@@ -20,6 +20,8 @@ int main()
     fd1 = open(filename1, O_RDONLY);
     read(fd1, str, MAX);
 
+    printf("\nReceived the file contents:- %s\n", str);
+    
     while(str[i] != '\0')
     {
         if(str[i] == '\n')

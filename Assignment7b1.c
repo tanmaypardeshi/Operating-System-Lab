@@ -14,10 +14,10 @@ int main()
     mkfifo(filename1, 0666);
     mkfifo(filename2, 0666);
     
-    fd1 = open(filename1, 0666);
+    fd1 = open(filename1, O_WRONLY);
     
     printf("\nPlease enter some text:- ");
-    scanf("%[^\t]s", str);
+    scanf("%[^\\;]s", str);
 
     write(fd1, str, strlen(str) + 1);
 
