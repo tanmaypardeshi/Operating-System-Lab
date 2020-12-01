@@ -22,5 +22,8 @@
 |[Assignment7a.c](Assignment7a.c)|Full duplex communication using pipes|
 |[Assignment7b1.c](Assignment7b1.c)|IPC of independent processes using fifo|
 |[Assignment7b2.c](Assignment7b2.c)|IPC of independent processes using fifo|
+|[Assignment8a.c](Assignment8a.c)|Ful duplex using shared memory|
+|[Assignment8b.c](Assignment8b.c)|Ful duplex using shared memory|
+|[Assignment9.c](Assignment9.c)|Database using linux I/O commands|
 
 

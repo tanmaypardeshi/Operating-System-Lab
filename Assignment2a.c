@@ -1,12 +1,3 @@
-/*
-================================================================================
-Assignment 2a: Zombie and Orphan process
-Name: Tanmay Pardeshi
-Roll number: 33259
-Batch: N 10
-================================================================================
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
