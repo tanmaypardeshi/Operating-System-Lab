@@ -39,22 +39,23 @@ int main()
 		printf("2. Write\n");
 		printf("3. Exit\n");
 		printf("\nEnter your choice:- ");
-		scanf("%d",&choice);
-		switch(choice){
-			case 1:
-				printf("\nYou wrote: %s", stuff->text);
-				break;
-			case 2:
-				printf("\nEnter the string to write - ");
-				scanf("\n");
-				fgets(buffer, BUFSIZ, stdin);
-				strncpy(stuff->text, buffer, SIZE);
-				break;
-			case 3:
-				running = 0;
-				break;
-			default:
-				printf("\n");
+		scanf("%d", &choice);
+		switch (choice)
+		{
+		case 1:
+			printf("\nYou wrote: %s", stuff->text);
+			break;
+		case 2:
+			printf("\nEnter the string to write - ");
+			scanf("\n");
+			fgets(buffer, BUFSIZ, stdin);
+			strncpy(stuff->text, buffer, SIZE);
+			break;
+		case 3:
+			running = 0;
+			break;
+		default:
+			printf("\n");
 		}
 	}
 	if (shmdt(shared_memory) == -1)
